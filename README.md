@@ -4,9 +4,9 @@
 
 **WARNING:** this is the most up to date version among the various posts that I've released. So, please try to refer to this. Despite being the most up to date one, it's not guaranteed to be 100% accurate: I publish modifications and updates as I analyze the technical info at my disposal, trying to do my best to keep up.
 
-This personal note, translation of its Italian version “[Cosa sappiamo su EyePyramid](https://medium.com/@phretor/cosa-sappiamo-su-eyepyramid-61b5b88c63b8#.fsgi8ch9g),” is meant to be a container of distilled technical information currently available on the EyePyramid case. It is mainly based on [the only official source](http://www.agi.it/pictures/pdf/agi/agi/2017/01/10/132733992-5cec4d88-49a1-4a00-8a01-dde65baa5a68.pdf), slightly enriched through some OSINT and personal searches.
+This personal note, translation of its Italian version ["Cosa sappiamo su EyePyramid"](https://medium.com/@phretor/cosa-sappiamo-su-eyepyramid-61b5b88c63b8#.fsgi8ch9g), is meant to be a container of distilled technical information currently available on the EyePyramid case. It is mainly based on [the only official source](http://www.agi.it/pictures/pdf/agi/agi/2017/01/10/132733992-5cec4d88-49a1-4a00-8a01-dde65baa5a68.pdf), slightly enriched through some OSINT and personal searches.
 
-Please feel free to comment here, or send me feedback at via email to: federico at maggi dot cc.
+Please feel free to comment here, or send me feedback via email to: federico at maggi dot cc.
  
 ## What happened?
 
@@ -20,7 +20,7 @@ Roughly, 87GB of data overall, of course there is much more beyond this, but I d
 
 ## When?
 
-Since 2012. Earlier versions of the malware malware (of uknonwn origin, [except some speculations that would link this to Project Sauron, which I don't believe](http://www.mainfatti.it/spionaggio/Cyberspionaggio-malware-EyePyramid-fa-parte-del-Progetto-Sauron_0182650033.htm)) have been probably used in 2008, 2010, 2011, and 2014 in various spear-phishing campaings (against various targets, including Italian targets).
+Since 2012. Earlier versions of the malware malware (of unknown origin, [except some speculations that would link this to Project Sauron, which I don't believe](http://www.mainfatti.it/spionaggio/Cyberspionaggio-malware-EyePyramid-fa-parte-del-Progetto-Sauron_0182650033.htm)) have been probably used in 2008, 2010, 2011, and 2014 in various spear-phishing campaigns (against various targets, including Italian targets).
 
 ## Who are the victims?
 
@@ -55,8 +55,8 @@ The exfiltrated information is referred to, produced/exchanged by, or otherwise 
 
 From what we know, the attacker (or the attackers):
 
-  1. cooked (or, better, modified an existing) malware that, among the traditional C2 communication techniques, it leverages MailBee.NET.dll APIs (a .NET library used for building mail software) to send the exfiltrated data out to dropzones. In particular, one of the MailBee license keys used by the malware writer is (? = uknownw) MN600-D8102?501003102110C5114F1?18-0E8CI (other keys are reported below)
-	2. comprmised (we don't know how) some email accounts (at least 15, from what we know). In particular, accounts belonging to various attorneys and associates,
+  1. cooked (or, better, modified an existing) malware that, among the traditional C2 communication techniques, it leverages MailBee.NET.dll APIs (a .NET library used for building mail software) to send the exfiltrated data out to dropzones. In particular, one of the MailBee license keys used by the malware writer is (? = unknown) MN600-D8102?501003102110C5114F1?18-0E8CI (other keys are reported below)
+	2. compromised (we don't know how) some email accounts (at least 15, from what we know). In particular, accounts belonging to various attorneys and associates,
 	3. the attacker (or the malware, it's not really clear) connects via Tor (for what is worth, the only known exit node is 37.49.226[.]236)
   4. using an email mail server (among the known ones, Aruba's MX 62.149.158[.]90) the attacker sends spear-phisihing email messages to the victims using the compromised accounts s the sender, containing a malicious attachment (unverified information: someone believes the attachment is a PDF)
   5. wait for the victims to open the attachment, which drops the malware executable
@@ -68,7 +68,7 @@ From what we know, the attacker (or the attackers):
 
 * [d3ad32bcb255e56cd2a768b3cbf6bafda88233288fc6650d0dfa3810be75f74c](https://www.virustotal.com/en/file/d3ad32bcb255e56cd2a768b3cbf6bafda88233288fc6650d0dfa3810be75f74c/analysis/)
 
-This has been found via “MSIL/Cribz.a”, a clue by [@ReaQta](https://twitter.com/@ReaQta) together with [@emgent](https://twitter.com/@emgent) who convinced me that it's actually a relevant sample. I'm still skeptical, though. It's definitely relevant and related based on what's in it, but it's **not** 2016's EyePyramid.
+This has been found via "MSIL/Cribz.a", a clue by [@ReaQta](https://twitter.com/@ReaQta) together with [@emgent](https://twitter.com/@emgent) who convinced me that it's actually a relevant sample. I'm still skeptical, though. It's definitely relevant and related based on what's in it, but it's **not** 2016's EyePyramid.
 
 An analysis has been started on [Hybrid Analysis](https://www.hybrid-analysis.com/sample/d3ad32bcb255e56cd2a768b3cbf6bafda88233288fc6650d0dfa3810be75f74c) (not by me).
 
@@ -217,9 +217,9 @@ I found these mailservers being used by the malware. Not clear (yet) if its only
 * alerts.txt
 
 ### Building info (and other source-code-related info)
-From the related sample above, I could determie that the code is written in .NET (>= 4.5.x), source-code-level obfuscation, plus some other obfuscation on the executable. Uses reflection, and I can confirm the use of MailBee, although I haven't been able to recover the license key.
+From the related sample above, I could determine that the code is written in .NET (>= 4.5.x), source-code-level obfuscation, plus some other obfuscation on the executable. Uses reflection, and I can confirm the use of MailBee, although I haven't been able to recover the license key.
 
-* Visual Studio was used to build “Eye Manager,” (allegedly the name of the botmaster component) 
+* Visual Studio was used to build Eye Manager, (allegedly the name of the botmaster component) 
 * Hangeron (module name)
 * Mailfaker (module name)
 * fHangeron.Menu.Web.vb (file name)
@@ -235,7 +235,7 @@ From the related sample above, I could determie that the code is written in .NET
 
 ### Other strings
 * MDaemon
-* MailDemon (odd: any English-speaking dev would have used “MailDaemon”, unless this is a typo introduced in the Police report)
+* MailDemon (odd: any English-speaking dev would have used MailDaemon, unless this is a typo introduced in the Police report)
 * InfoPyramid
 * MN600-849590C695DFD9BF69481597241E-668C (.NET MailBee license key)
 * MN600-841597241E8D9BF6949590C695DF-774D (.NET MailBee license key)
